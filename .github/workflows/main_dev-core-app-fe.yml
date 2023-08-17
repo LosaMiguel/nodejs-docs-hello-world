@@ -72,7 +72,7 @@ jobs:
           inlineScript: |
             az extension add --name webapp
 
-            az storage account create   -n $ACCOUNT   -g $GROUP -l westus
+            az storage account create   -n $ACCOUNT   -g $GROUP -l westeurope
             az storage container create -n $CONTAINER --account-name $ACCOUNT
             az storage blob upload      -f app.zip    --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT
 
