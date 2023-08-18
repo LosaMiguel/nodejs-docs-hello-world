@@ -85,6 +85,9 @@ jobs:
             APP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry $EXPIRY --account-name $ACCOUNT -c $CONTAINER -n app.zip | xargs)
 
             echo "===== BEGIN WITH ONE DEPLOY ====="
+            echo 'test app url: "${APP_URL}"'
+            echo '2nd test app url: "'"${APP_URL}"'"'
+            
             az rest --method PUT \
                     --uri https://management.azure.com/subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${GROUP}/providers/Microsoft.Web/sites/${WEBAPP}/extensions/onedeploy?api-version=2022-03-01 \
                     --body '{ 
