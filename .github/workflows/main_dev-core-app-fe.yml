@@ -74,13 +74,9 @@ jobs:
 
             az storage account create   -n $ACCOUNT   -g ${GROUP} -l westeurope
             az storage container create -n $CONTAINER --account-name $ACCOUNT
-            az storage blob upload      -f app.zip    --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT
-
-            ZIP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry $EXPIRY --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT | xargs)
-
-            az storage blob upload --account-name $ACCOUNT -c $CONTAINER -f app.zip
             
-            APP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry $EXPIRY --account-name $STORAGE_ACCOUNT -c $CONTAINER -n app.zip | xargs)
+            az storage blob upload --account-name $ACCOUNT -c $CONTAINER -f app.zip
+            APP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry $EXPIRY --account-name $ACCOUNT -c $CONTAINER -n app.zip | xargs)
             az rest --method PUT \
                     --uri https://management.azure.com/subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${GROUP}/providers/Microsoft.Web/sites/${WEBAPP}/extensions/onedeploy?api-version=2020-12-01 \
                     --body '{ 
