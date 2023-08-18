@@ -90,10 +90,11 @@ jobs:
                     --body '{ 
                         "properties": { 
                             "properties": {
-                                "packageUri": "'"${APP_URL}"'"
+                                "packageUri": "${APP_URL}"
                             }, 
                             "type": "zip",
                         }
                     }'
 
+            echo "===== DELETE CONTAINER ====="
             az storage container delete -n $CONTAINER --account-name $ACCOUNT 
