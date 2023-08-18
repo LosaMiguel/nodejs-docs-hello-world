@@ -86,7 +86,7 @@ jobs:
 
             echo "===== BEGIN WITH ONE DEPLOY ====="
             az rest --method PUT \
-                    --uri https://management.azure.com/subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${GROUP}/providers/Microsoft.Web/sites/${WEBAPP}/extensions/onedeploy?api-version=2022-03-01 \
+                    --uri https://management.azure.com/subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${GROUP}/providers/Microsoft.Web/sites/${WEBAPP}/extensions/onedeploy?api-version=2020-12-01 \
                     --body '{ 
                         "properties": {
                             "packageUri": "'"${APP_URL}"'",
