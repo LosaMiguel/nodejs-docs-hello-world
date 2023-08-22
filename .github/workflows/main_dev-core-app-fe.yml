@@ -59,7 +59,7 @@ jobs:
       - name: Zip the app contents
         uses: papeloto/action-zip@v1
         with:
-          files: node-app/
+          files: node-app
           dest: app.zip
 
       - name: Set SAS token expiration
