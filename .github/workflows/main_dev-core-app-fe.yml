@@ -84,7 +84,7 @@ jobs:
 
             echo "===== BEGIN WITH ONE DEPLOY ====="
             echo "test: https://management.azure.com/subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${GROUP}/providers/Microsoft.Web/sites/${WEBAPP}/extensions/onedeploy?api-version=2022-03-01"
-            az rest --method PUT --uri https://management.azure.com/subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${GROUP}/providers/Microsoft.Web/sites/${WEBAPP}/extensions/onedeploy?api-version=2022-03-01 --body '{"properties": {"packageUri": "'"${APP_URL}"'", "type": "zip"}}'
+            az rest --verbose --method PUT --uri https://management.azure.com/subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${GROUP}/providers/Microsoft.Web/sites/${WEBAPP}/extensions/onedeploy?api-version=2022-03-01 --body '{"properties": {"type": "zip", "packageUri": "'"${APP_URL}"'"}}'
 
             echo "===== DELETE CONTAINER ====="
             az storage container delete -n $CONTAINER --account-name $ACCOUNT 
