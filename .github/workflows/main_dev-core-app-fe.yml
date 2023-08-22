@@ -68,7 +68,7 @@ jobs:
       - name: Azure CLI script
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.30.0
+          azcliversion: 2.51.0
           inlineScript: |
             az extension add --name webapp 
             
@@ -83,7 +83,7 @@ jobs:
             
             echo "===== BEGIN WITH BLOB SAS ====="
             echo "$EXPIRY"
-            APP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry $EXPIRY --account-name $ACCOUNT -c $CONTAINER -n app.zip | xargs)
+            APP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry ${{ env.EXPIRY }} --account-name $ACCOUNT -c $CONTAINER -n app.zip | xargs)
 
             echo "===== BEGIN WITH ONE DEPLOY ====="
             echo "test: https://management.azure.com/subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${GROUP}/providers/Microsoft.Web/sites/${WEBAPP}/extensions/onedeploy?api-version=2022-03-01"
