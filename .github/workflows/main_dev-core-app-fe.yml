@@ -70,6 +70,8 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
+            az extension add --name webapp 
+            
             echo "===== CREATE STORAGE ACCOUNT ====="
             az storage account create   -n $ACCOUNT   -g ${GROUP} -l westeurope
 
